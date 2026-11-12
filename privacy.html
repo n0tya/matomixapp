@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>マトミクス プライバシーポリシー（下書き）</title>
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<style>
+  :root { color-scheme: light dark; --fg: #0b1f3a; --muted: #4b5563; --bg: #f3f5f8; --card: #fff; --accent: #ff5a36; }
+  @media (prefers-color-scheme: dark) { :root { --fg: #e5e9f0; --muted: #9aa6b8; --bg: #0b1626; --card: #13233a; --accent: #ff7a5c; } }
+  body { margin: 0; background: var(--bg); color: var(--fg); font: 16px/1.8 -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Noto Sans JP", sans-serif; }
+  main { max-width: 720px; margin: 0 auto; padding: 32px max(16px, env(safe-area-inset-right)) 64px max(16px, env(safe-area-inset-left)); }
+  article { background: var(--card); border-radius: 16px; padding: 24px 20px; }
+  h1 { font-size: 22px; line-height: 1.5; margin: 0 0 4px; }
+  h2 { font-size: 17px; margin: 28px 0 8px; color: var(--accent); }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 8px; }
+  .home { display: inline-block; margin: 0 0 16px; color: var(--accent); font-weight: 700; text-decoration: none; }
+  p, li { margin: 6px 0; }
+  ul { padding-left: 1.3em; }
+</style>
+</head>
+<body>
+<main>
+<a class="home" href="./">← マトミクス</a>
+<article>
+<h1>マトミクス プライバシーポリシー（下書き）</h1>
+<p class="updated">最終更新日: 2026-11-12</p>
+<h2>はじめに</h2>
+<p>マトミクス（以下「本アプリ」）は、利用者が入力した文章から、X（旧Twitter）などに投稿するための図解の画像を作るアプリです。本アプリの運営者（以下「運営者」）は、利用者の情報を次のとおり取り扱います。</p>
+<h2>1. 本アプリが扱う情報</h2>
+<ul><li>図解にするために利用者が入力した文章と出典（記事名や URL）</li><li>URL 読み込みを使ったときの、記事の URL</li><li>利用者ごとに自動で作られる識別番号（匿名のログイン ID）</li><li>1日に図解を作った回数・URL を読み込んだ回数と、プランの種類</li><li>端末に保存される図解の履歴、色やブランド（ロゴの画像・名前）の設定</li></ul>
+<p>氏名、メールアドレス、電話番号の入力は求めません。アカウントの登録もありません。</p>
+<h2>2. 図解を作るときの文章の送信先</h2>
+<p>「図解にする」を押すと、入力した文章は運営者のサーバー（Google の Firebase。東京リージョン）を通して、Google の AI（Gemini API）に送られ、要点や数字の整理に使われます。図解の画像は、利用者の端末の中で作ります。</p>
+<p>運営者は Gemini API を有料の契約で使っています。Google の規約では、有料の契約で送った内容は Google の製品の改善（AI の学習を含む）には使われません。ただし、不正利用の監視や法令への対応のために、Google が一定の期間保存することがあります。</p>
+<p>運営者のサーバーは、送られた文章を保存しません。動作の記録（ログ）には、匿名のログイン ID、文字数、処理にかかった時間、使った AI の種類などを残しますが、文章の中身は残しません。</p>
+<p>個人情報や、他の人に知られたくない内容は入力しないでください。</p>
+<h2>3. URL 読み込み</h2>
+<p>URL 読み込みを使うと、運営者のサーバーが、その URL のページを取りに行き、本文だけを取り出して利用者の端末に返します。取り出した本文は保存しません。動作の記録には、匿名のログイン ID、ページのドメイン名（例: example.com）、文字数を残します。</p>
+<p>ログインが必要なページや、社内向けのアドレスのページは読み込みません。</p>
+<h2>4. 端末に保存する情報</h2>
+<p>図解の履歴（最大100件）、色やブランドの設定、同意の記録は、利用者の端末の中に保存します。運営者のサーバーには送りません。</p>
+<p>端末の設定によっては、iPhone のバックアップ（iCloud など）にこれらが含まれることがあります。</p>
+<p>図解を「写真に保存」したときや、ロゴの画像を選ぶときは、写真へのアクセスの許可を求めます。許可は端末の設定でいつでも取り消せます。</p>
+<h2>5. 利用目的</h2>
+<ul><li>図解を作り、利用者に表示するため</li><li>1日に使える回数を数え、不正な使い方や、費用が想定を超えて膨らむことを防ぐため</li><li>不具合を直し、本アプリを改善するため（動作の記録を使う。文章の中身は使わない）</li></ul>
+<h2>6. 第三者への提供・広告</h2>
+<p>運営者は、上の 2・3 に書いた Google のサービスを使う場合と、法令に基づく場合を除き、利用者の情報を第三者に提供しません。</p>
+<p>現在、本アプリは広告や、利用状況を分析するための外部サービスを使っていません。今後、有料プランの購入の仕組みや、これらのサービスを使う場合は、このポリシーを改定し、必要に応じて利用者の同意を得ます。</p>
+<h2>7. 情報の削除</h2>
+<p>図解の履歴は、本アプリの「履歴」からいつでも削除できます。本アプリを端末から削除した場合も、端末内の情報は削除されます（バックアップに残っている分を除く）。</p>
+<p>運営者のサーバーにある回数の記録の削除を希望する場合は、下のお問い合わせ先に連絡してください。</p>
+<h2>8. ポリシーの変更</h2>
+<p>運営者は、必要に応じてこのポリシーを変更します。大事な変更をした場合は、本アプリの中でお知らせし、必要に応じて同意を取り直します。</p>
+<h2>9. お問い合わせ</h2>
+<p>運営者: のちゃ（X: @in0tya）</p>
+<p>運営者の氏名・住所は、法令に基づく請求があった場合に、遅滞なくお知らせします。</p>
+<p>お問い合わせ先: in0tya.support@gmail.com</p>
+</article>
+</main>
+</body>
+</html>

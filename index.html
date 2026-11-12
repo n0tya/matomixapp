@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>マトミクス - 長文を、X で読まれる図解に</title>
+<meta name="description" content="長文の考察やニュースを貼るだけで、X に投稿しやすい図解スライド（1〜4枚）が完成。数字は本文と照らし合わせて、崩れません。iPhone アプリ。">
+<meta property="og:type" content="website">
+<meta property="og:title" content="マトミクス - 長文を、X で読まれる図解に">
+<meta property="og:description" content="長文を貼るだけで、数字の崩れない図解スライド（1〜4枚）に。スマホだけで完成する iPhone アプリ。">
+<meta property="og:url" content="https://n0tya.github.io/matomix-site/">
+<meta property="og:image" content="https://n0tya.github.io/matomix-site/img/og.png">
+<meta property="og:locale" content="ja_JP">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:creator" content="@in0tya">
+<link rel="icon" type="image/png" href="img/favicon-64.png">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&display=swap">
+<style>
+  /* 色・文字はアプリの図解（紺の帯・オレンジの強調・青）に合わせる */
+  :root {
+    --bg: #F3F5F8; --surface: #FFFFFF; --ink: #0B1F3A; --text: #1F2937; --sub: #4B5563; --line: #E2E7EE;
+    --navy: #0B1F3A; --accent: #FF5A36; --blue: #2563EB; --band-sub: #C7D2E3;
+    --font: "Noto Sans JP", -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic UI", sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #0A1422; --surface: #12223A; --ink: #EEF2F8; --text: #DCE3EE; --sub: #9DAABD; --line: #22344F; --blue: #6EA0FF; color-scheme: dark; }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.8 var(--font); -webkit-text-size-adjust: 100%; }
+  a { color: var(--blue); }
+  a:focus-visible, .btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 6px; }
+  .wrap { max-width: 1040px; margin: 0 auto; padding-left: max(20px, env(safe-area-inset-left)); padding-right: max(20px, env(safe-area-inset-right)); }
+  h1, h2, h3 { color: var(--ink); line-height: 1.4; text-wrap: balance; margin: 0; }
+  h2 { font-size: clamp(22px, 3.2vw, 30px); font-weight: 900; }
+  section { padding-block: 56px; }
+
+  /* ヘッダー */
+  header { padding-block: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 900; color: var(--ink); text-decoration: none; font-size: 18px; }
+  .brand img { width: 36px; height: 36px; border-radius: 9px; }
+  .top { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+  .top nav { display: flex; gap: 18px; font-size: 14px; }
+  .top nav a { color: var(--sub); text-decoration: none; }
+
+  /* 最初の画面 */
+  .hero { display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; padding-block: 40px 56px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 48px); font-weight: 900; letter-spacing: 0.01em; }
+  .hero h1 em { font-style: normal; color: var(--accent); }
+  .lead { color: var(--sub); font-size: 17px; margin: 16px 0 24px; max-width: 34em; }
+  .soon { display: inline-flex; align-items: center; gap: 10px; background: var(--navy); color: #fff; padding: 12px 20px; border-radius: 12px; font-weight: 700; font-size: 15px; }
+  .soon small { color: var(--band-sub); font-weight: 400; }
+  .note { font-size: 13px; color: var(--sub); margin-top: 10px; }
+
+  /* 見本の図解（アプリの「ニュース」テンプレートを HTML で再現） */
+  .sample { background: #F7F8FA; border-radius: 14px; overflow: hidden; box-shadow: 0 18px 40px rgba(11,31,58,0.18); aspect-ratio: 16 / 9; display: flex; flex-direction: column; font-size: 2.05cqw; line-height: 1.45; color: #111827; max-width: 100%; }
+  .s-band { background: #0B1F3A; color: #fff; font-weight: 700; padding: 0.9em 2.4em; display: flex; justify-content: space-between; align-items: center; font-size: 1.2em; }
+  .s-band b { border-left: 0.35em solid #FF5A36; padding-left: 0.6em; }
+  .s-badge { background: #FF5A36; border-radius: 99px; padding: 0.1em 0.8em; font-size: 0.85em; font-weight: 900; }
+  .s-body { flex: 1; display: grid; grid-template-columns: 1.65fr 1fr; gap: 1.8em; padding: 1.5em 2.4em 0.8em; min-height: 0; }
+  .s-title { font-weight: 900; color: #0B1F3A; font-size: 1.8em; line-height: 1.35; }
+  .s-sub { color: #4B5563; font-size: 1em; margin-top: 0.3em; }
+  .s-rule { height: 0.12em; background: #E5E7EB; margin: 0.9em 0; }
+  .s-points { list-style: none; margin: 0; padding: 0; display: grid; gap: 0.45em; font-weight: 700; font-size: 1.15em; }
+  .s-points li { display: flex; gap: 0.6em; align-items: flex-start; }
+  .s-points span { background: #FF5A36; color: #fff; border-radius: 0.3em; min-width: 1.6em; height: 1.6em; display: inline-grid; place-items: center; font-weight: 900; font-size: 0.85em; margin-top: 0.1em; }
+  .s-stats { display: grid; gap: 0.8em; }
+  .s-stat { background: #0B1F3A; border-radius: 0.7em; padding: 0.7em 1em; color: #fff; display: flex; flex-direction: column; justify-content: center; }
+  .s-stat small { color: #C7D2E3; font-weight: 700; font-size: 0.95em; }
+  .s-stat strong { color: #FF5A36; font-size: 2.6em; font-weight: 900; line-height: 1.1; }
+  .s-stat strong i { font-style: normal; color: #fff; font-size: 0.45em; margin: 0 0.15em; }
+  .s-foot { border-top: 1px solid #E5E7EB; padding: 0.6em 2.4em; display: flex; justify-content: space-between; color: #4B5563; font-size: 0.9em; }
+  .s-foot b { color: #0B1F3A; }
+  .caption { font-size: 12px; color: var(--sub); text-align: center; margin-top: 10px; }
+
+  /* 特長 */
+  .features { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+  .feature { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 22px 22px 20px; }
+  .feature h3 { font-size: 18px; font-weight: 900; display: flex; gap: 10px; align-items: baseline; }
+  .feature h3 span { color: var(--accent); font-size: 14px; font-weight: 900; font-variant-numeric: tabular-nums; }
+  .feature p { margin: 8px 0 0; color: var(--sub); font-size: 15px; }
+  .feature ul { margin: 8px 0 0; padding-left: 1.2em; color: var(--sub); font-size: 15px; }
+
+  /* 使い方（3つの手順） */
+  .steps { list-style: none; padding: 0; margin: 28px 0 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; counter-reset: s; }
+  .steps li { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 20px; counter-increment: s; }
+  .steps li::before { content: "STEP " counter(s); display: inline-block; background: var(--accent); color: #fff; font-weight: 900; font-size: 12px; letter-spacing: 0.06em; padding: 2px 10px; border-radius: 99px; margin-bottom: 8px; }
+  .steps b { display: block; color: var(--ink); font-size: 17px; }
+  .steps p { margin: 4px 0 0; color: var(--sub); font-size: 14px; }
+
+  /* 料金 */
+  .plans { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: 28px; }
+  .plan { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; }
+  .plan.pro { border: 2px solid var(--accent); }
+  .plan h3 { font-size: 18px; font-weight: 900; }
+  .price { font-size: 28px; font-weight: 900; color: var(--ink); margin: 6px 0 4px; font-variant-numeric: tabular-nums; }
+  .price small { font-size: 14px; color: var(--sub); font-weight: 700; }
+  .plan ul { margin: 10px 0 0; padding-left: 1.2em; font-size: 15px; }
+  .plan li { margin: 4px 0; }
+
+  /* サポート */
+  .support { background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 24px; margin-top: 24px; }
+  .mail { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin: 8px 0 4px; }
+  .mail code { font: 700 17px/1.4 ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace; color: var(--ink); background: var(--bg); padding: 6px 10px; border-radius: 8px; user-select: all; overflow-wrap: anywhere; }
+  .btn { font: 700 14px var(--font); border: 1px solid var(--line); background: var(--surface); color: var(--ink); border-radius: 8px; padding: 6px 12px; cursor: pointer; }
+  details { border-top: 1px solid var(--line); padding: 14px 0; }
+  details:last-of-type { border-bottom: 1px solid var(--line); }
+  summary { cursor: pointer; font-weight: 700; color: var(--ink); }
+  details p { margin: 8px 0 0; color: var(--sub); font-size: 15px; }
+
+  footer { padding-block: 32px 48px; color: var(--sub); font-size: 14px; border-top: 1px solid var(--line); }
+  footer .row { display: flex; flex-wrap: wrap; gap: 8px 20px; justify-content: space-between; }
+  footer nav { display: flex; flex-wrap: wrap; gap: 8px 18px; }
+
+  @media (max-width: 760px) {
+    .hero { grid-template-columns: 1fr; gap: 28px; padding-top: 16px; }
+    .features, .plans, .steps { grid-template-columns: 1fr; }
+    .top nav { display: none; }
+    section { padding-block: 40px; }
+  }
+</style>
+</head>
+<body>
+<header class="wrap top">
+  <a class="brand" href="./"><img src="img/icon-512.png" alt="" width="36" height="36">マトミクス</a>
+  <nav aria-label="ページ内">
+    <a href="#features">特長</a>
+    <a href="#price">料金</a>
+    <a href="#support">サポート</a>
+  </nav>
+</header>
+
+<main>
+  <div class="wrap hero">
+    <div>
+      <h1>長文を、<br>X で読まれる<em>図解</em>に。</h1>
+      <p class="lead">考察・ニュース・調査結果を貼るだけで、AI が要点と数字を整理し、X に投稿しやすい図解スライド（1〜4枚）にまとめます。数字は本文と照らし合わせるので、崩れません。</p>
+      <span class="soon"> iPhone アプリ <small>App Store で近日公開</small></span>
+      <p class="note">アカウント登録は不要です。</p>
+    </div>
+    <figure style="margin:0; container-type: inline-size; min-width: 0">
+      <div class="sample" role="img" aria-label="マトミクスで作った図解の見本。見出し、番号つきの要点5つ、数字のカード3枚が並ぶ">
+        <div class="s-band"><b>データ分析</b><span class="s-badge">全4枚 ▶</span></div>
+        <div class="s-body">
+          <div>
+            <div class="s-title">リーグ後半戦、勝率を分けたのは「序盤の守り」だった</div>
+            <div class="s-sub">全48試合のログから、勝ったチームと負けたチームの違いを比べた</div>
+            <div class="s-rule"></div>
+            <ul class="s-points">
+              <li><span>1</span>先制されたチームの逆転勝ちは、わずか2割</li>
+              <li><span>2</span>上位3チームは、序盤10分の失点が平均0.4点</li>
+              <li><span>3</span>攻撃の回数は、勝敗とほとんど関係なかった</li>
+            </ul>
+          </div>
+          <div class="s-stats">
+            <div class="s-stat"><small>先制したチームの勝率</small><strong>78<i>%</i></strong></div>
+            <div class="s-stat"><small>観客数（1試合）</small><strong><i>約</i>1.2<i>万人以上</i></strong></div>
+            <div class="s-stat"><small>上位3チームの序盤失点</small><strong>0.4<i>点</i></strong></div>
+          </div>
+        </div>
+        <div class="s-foot"><span>出典：2026年 後半戦 公式記録（架空のデータ）</span><b>1/4</b></div>
+      </div>
+      <figcaption class="caption">見本（架空のデータ）。実際のアプリでは、このような画像を1〜4枚作ります。</figcaption>
+    </figure>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <h2>マトミクスの特長</h2>
+      <div class="features">
+        <div class="feature">
+          <h3><span>01</span>数字が崩れない</h3>
+          <p>AI がまとめた数字を、本文ともう一度照らし合わせます。</p>
+          <ul>
+            <li>本文にない数字は図に入れない</li>
+            <li>「約」「以上」などの言葉を本文どおりに</li>
+            <li>「16〜19℃」のような範囲、「1万2,000」のような書き方も本文どおり</li>
+          </ul>
+        </div>
+        <div class="feature">
+          <h3><span>02</span>X に合わせた1〜4枚</h3>
+          <p>文章の長さに合わせて自動で1〜4枚に。1枚目は表紙、2枚目からは話題ごと。2枚以上のときは、X で切れずに表示される 3:4 のサイズで作ります。</p>
+        </div>
+        <div class="feature">
+          <h3><span>03</span>グラフ・表・手順も自動で</h3>
+          <p>ニュース風・プレゼン資料風・比較表・手順（STEP 1→2→3）の4つのテンプレート。棒グラフ・円グラフ・比較表を自動で作ります。色のテーマは4種類。</p>
+        </div>
+        <div class="feature">
+          <h3><span>04</span>出典もきちんと</h3>
+          <p>図解の下に「出典：」を表示。本文に書かれた情報源を自動で拾います。他の人の記事を図解にするときも、出典を入れて投稿できます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="how">
+    <div class="wrap">
+      <h2>使い方</h2>
+      <ol class="steps">
+        <li><b>文章を貼る</b><p>考察やニュースを貼り付けます（50〜6000字）。記事の URL から読み込むこともできます（有料プラン）。</p></li>
+        <li><b>「図解にする」を押す</b><p>10秒ほどで、要点・数字・グラフを整理した図解ができます。</p></li>
+        <li><b>保存して投稿</b><p>写真に保存して、X に投稿。テンプレートや色は、あとから切り替えられます。</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section id="price">
+    <div class="wrap">
+      <h2>料金</h2>
+      <div class="plans">
+        <div class="plan">
+          <h3>無料プラン</h3>
+          <div class="price">0円</div>
+          <ul>
+            <li>1日5回まで図解を作れる</li>
+            <li>テンプレート4種・色のテーマ4種</li>
+            <li>画像の右下に「マトミクスで作成」が入ります</li>
+          </ul>
+        </div>
+        <div class="plan pro">
+          <h3>有料プラン</h3>
+          <div class="price">月480円 <small>／ 年3,800円（税込み）</small></div>
+          <ul>
+            <li>1日50回まで作れる</li>
+            <li>手直し：見出し・要点・数字・グラフ・表をその場で直せる</li>
+            <li>URL 読み込み：記事の URL を貼るだけで本文を読み込み</li>
+            <li>ブランド：自分の色・ロゴ・名前を図解に</li>
+            <li>透かしなし</li>
+          </ul>
+        </div>
+      </div>
+      <p class="note">有料プランは App Store のアプリ内課金です。公開時の料金は App Store の表示をご確認ください。</p>
+    </div>
+  </section>
+
+  <section id="support">
+    <div class="wrap">
+      <h2>サポート・お問い合わせ</h2>
+      <div class="support">
+        <p style="margin:0">不具合のご報告・ご質問・ご要望は、次のメールアドレスまでお送りください。</p>
+        <div class="mail">
+          <code id="mail">in0tya.support@gmail.com</code>
+          <button class="btn" type="button" id="copy">コピー</button>
+          <span id="copied" class="note" hidden>コピーしました</span>
+        </div>
+        <p class="note">個人で運営しているため、お返事に数日かかることがあります。X（<a href="https://x.com/in0tya" rel="noopener">@in0tya</a>）でも開発の様子をお知らせしています。</p>
+      </div>
+
+      <div style="margin-top:24px">
+        <details>
+          <summary>入力した文章はどう扱われますか？</summary>
+          <p>図解を作るために、Google の AI（Gemini API）に送られます。有料の契約で使っているため、AI の学習には使われません。運営者のサーバーは文章を保存しません。くわしくは<a href="privacy.html">プライバシーポリシー</a>をご覧ください。</p>
+        </details>
+        <details>
+          <summary>アカウントの登録は必要ですか？</summary>
+          <p>いりません。アプリを開くと、名前やメールアドレスのない匿名の ID が自動で作られます。</p>
+        </details>
+        <details>
+          <summary>作った図解の画像は自由に使えますか？</summary>
+          <p>はい、X などに自由に投稿できます。ただし、元の文章の権利は元の文章の権利者にあります。他の人の記事を図解にするときは、出典を入れてください。</p>
+        </details>
+        <details>
+          <summary>数字が間違っていることはありますか？</summary>
+          <p>本文にない数字や、途中で切れた数字は図に入れない仕組みですが、AI の整理には誤りが含まれることがあります。投稿の前に、元の文章と見比べてください。</p>
+        </details>
+        <details>
+          <summary>1日の回数はいつ戻りますか？</summary>
+          <p>日本時間の0時に戻ります。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap row">
+    <nav aria-label="ポリシー">
+      <a href="privacy.html">プライバシーポリシー</a>
+      <a href="terms.html">利用規約</a>
+      <a href="#support">お問い合わせ</a>
+    </nav>
+    <span>© 2026 のちゃ（<a href="https://x.com/in0tya" rel="noopener">@in0tya</a>）</span>
+  </div>
+</footer>
+
+<script>
+  // メールアドレスのコピー（使えない環境では、アドレスを選んだ状態にする）
+  document.getElementById('copy').addEventListener('click', async () => {
+    const text = document.getElementById('mail').textContent;
+    try {
+      await navigator.clipboard.writeText(text);
+      const done = document.getElementById('copied');
+      done.hidden = false;
+      setTimeout(() => { done.hidden = true; }, 2000);
+    } catch {
+      const r = document.createRange();
+      r.selectNodeContents(document.getElementById('mail'));
+      const s = getSelection();
+      s.removeAllRanges();
+      s.addRange(r);
+    }
+  });
+</script>
+</body>
+</html>
